@@ -1,0 +1,34 @@
+﻿<Window x:Class="LicenseKeyGeneration.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LicenseKeyGeneration"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <TextBlock Text="Product Code" Width="120"> </TextBlock>
+                <TextBox Text="{Binding ProductCode}" Width="100"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <TextBlock Text="Expire Date" Width="120"></TextBlock>
+                <TextBox Text="{Binding ExpireDate}" Width="100"></TextBox>
+            </StackPanel>
+            <StackPanel Margin="5" Orientation="Vertical">
+                <Button Content="Licence Key Generate" Margin="10" Command="{Binding CreateLicenseKey}"></Button>
+                <Button Content="Licence Key Decrypt" Margin="10" Command="{Binding ExtractLicenseData}"></Button>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <TextBlock Text="Product Code Extracted" Width="120"></TextBlock>
+                <TextBox Text="{Binding ProductCodeExtracted}" Width="100"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <TextBlock Text="Expire Date Extracted" Width="120"></TextBlock>
+                <TextBox Text="{Binding ExpireDateExtracted}" Width="100"></TextBox>
+            </StackPanel>
+
+        </StackPanel>
+    </Grid>
+</Window>
