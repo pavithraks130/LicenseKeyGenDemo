@@ -6,6 +6,7 @@ using System.Security.Cryptography;
 using System.Security.RightsManagement;
 using System.Text;
 using System.Threading.Tasks;
+using LicenseKey;
 
 namespace LicenseKeyGeneration.BusinessLogic
 {
@@ -60,9 +61,16 @@ namespace LicenseKeyGeneration.BusinessLogic
 
             var part1 = Base36.Encode(BitConverter.ToUInt64(_checksum, 0));
             var part2 = Base36.Encode(BitConverter.ToUInt64(_checksum, 8));
+            string datastr = string.Concat(part1, "-", part2);
 
-
-            return string.Concat(part1, "-", part2, "-", part3, "-", part4);
+            var keygeneration = new GenerateKey();
+            keygeneration.LicenseTemplate = "v-xxxxxxxxxxxxxxxxxxxx-xxxxxxxxxxxxxxxxxxxx";
+            keygeneration.MaxTokens = 2;
+            keygeneration.AddToken(0, "v", GenerateKey.TokenTypes.CHARACTER, datastr);
+            keygeneration.UseBase10 = false;
+            keygeneration.UseBytes = false;
+            keygeneration.CreateKey();
+            return keygeneration.GetLicenseKey();
         }
 
         public string GetLicensedata(string licKey)
